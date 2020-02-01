@@ -8,11 +8,21 @@
 <div id="loginContainer" class="dialog dialog-effect-in">
     <div class="dialog-front">
         <div class="dialog-content">
+            <a class="text-center navbar-brand" href="#"> Document Upload System </a>
             <form id="login_form" class="dialog-form" action="/login/getlogin" method="POST">
                 <fieldset>
-                    <legend>Log in</legend>
+                    <legend></legend>
+                    @*<div class="form-group">
+                        <label for="" class="text-center control-label">Login</label>
+                        @*<input type="text" id="user_username" class="form-control" name="username" autofocus />
+                    </div>*@
                     <div class="form-group">
-                        <label for="user_username" class="control-label">Username:</label>
+                        <label for="user_role" class="control-label">UserRole:</label>
+                        <select id="user_role" class="form-control" name="userrole" autofocus></select>
+                        @*<input type="text" id="user_username" class="form-control" name="username" autofocus />*@
+                    </div>
+                    <div class="form-group">
+                        <label for="user_username" class="control-label">UserId:</label>
                         <input type="text" id="user_username" class="form-control" name="username" autofocus />
                     </div>
                     <div class="form-group">
@@ -20,14 +30,14 @@
                         <input type="password" id="user_password" class="form-control" name="password" />
                     </div>
                     @*<div class="text-center pad-top-20">
-                        <p>Have you forgotten your<br><a href="#" class="link"><strong>username</strong></a> or <a href="#" class="link"><strong>password</strong></a>?</p>
-                    </div>*@
+            <p>Have you forgotten your<br><a href="#" class="link"><strong>username</strong></a> or <a href="#" class="link"><strong>password</strong></a>?</p>
+        </div>*@
                     <div class="pad-top-20 pad-btm-20">
-                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Continue">
+                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Submit">
                     </div>
                     @*<div class="text-center">
-                        <p>Do you wish to register<br> for <a href="#" class="link user-actions"><strong>a new account</strong></a>?</p>
-                    </div>*@
+            <p>Do you wish to register<br> for <a href="#" class="link user-actions"><strong>a new account</strong></a>?</p>
+        </div>*@
                 </fieldset>
             </form>
         </div>
