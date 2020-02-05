@@ -23,3 +23,5 @@ packages/*
 /PatientPortal/Reports/Bill/2018/November
 /PatientPortal/Reports
 /.vs/PatientPortal/v16
+/.vs/PatientReport/v16/Server/sqlite3
+/.vs/PatientReport/v16/.suo
