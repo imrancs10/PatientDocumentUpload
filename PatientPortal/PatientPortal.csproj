@@ -206,15 +206,9 @@
     <Compile Include="BAL\Lookup\LookupDetails.cs" />
     <Compile Include="BAL\Patient\PatientDetails.cs" />
     <Compile Include="BAL\Reports\ReportDetails.cs" />
-    <Compile Include="Controllers\AdminController.cs" />
-    <Compile Include="Controllers\AppointmentController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
-    <Compile Include="Controllers\GeneralController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MastersController.cs" />
-    <Compile Include="Controllers\PatientController.cs" />
-    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -450,19 +444,9 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Masters\AppointmentSetting.cshtml" />
     <Content Include="Views\Masters\LabReport.cshtml" />
-    <Content Include="Views\Patient\GetLabReport.cshtml" />
-    <Content Include="Views\Report\GetBillingReport.cshtml" />
-    <Content Include="Views\Report\ReportViewing.cshtml" />
-    <Content Include="Views\Admin\PatientBillReport.cshtml" />
     <Content Include="Views\Shared\_PatientSearch.cshtml" />
-    <Content Include="Views\Admin\PatientLabReport.cshtml" />
-    <Content Include="Views\Home\TransactionPayReNewal.cshtml" />
-    <Content Include="Views\Home\MakePaymentRenewal.cshtml" />
-    <Content Include="Views\Home\TransactionResponseRenewal.cshtml" />
-    <Content Include="Views\Report\PatientLedger.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -472,30 +456,10 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\Home\TransactionPayReNewalExpired.cshtml" />
-    <Content Include="Views\Home\TransactionResponseRenewalExpired.cshtml" />
     <Content Include="Views\Shared\ExceptionPage.cshtml" />
-    <Content Include="Views\Report\DuplicateBillingReport.cshtml" />
-    <Content Include="Views\Home\MakePayment.cshtml" />
     <Content Include="Views\Masters\SyncHISFailedTransaction.cshtml" />
-    <Content Include="Views\Home\MakePaymentBill.cshtml" />
-    <Content Include="Views\Home\TransactionPayBill.cshtml" />
-    <Content Include="Views\Home\TransactionResponseBill.cshtml" />
     <Content Include="Views\Masters\AddMasterLookup.cshtml" />
-    <Content Include="Views\Report\ViewBillingReport.cshtml" />
-    <Content Include="Views\Report\ViewLabReport.cshtml" />
-    <Content Include="Views\Report\ViewRadiologyLabReport.cshtml" />
-    <Content Include="Views\Appointment\CancellationAppointment.cshtml" />
-    <Content Include="Views\Report\DischargeSummary.cshtml" />
-    <Content Include="Views\Report\ViewDischargeSummaryReport.cshtml" />
-    <Content Include="Views\Report\PaymentReciept.cshtml" />
-    <Content Include="Views\General\Information.cshtml" />
-    <Content Include="Views\General\AboutRML.cshtml" />
-    <Content Include="Views\General\HolidayList.cshtml" />
     <Content Include="Views\Masters\SendMessageToPatient.cshtml" />
-    <Content Include="Views\Home\MyMessageList.cshtml" />
-    <Content Include="Views\Home\TempRegister.cshtml" />
-    <Content Include="Views\Admin\DoctorType.cshtml" />
     <None Include="Web References\HISWebReference\GetPatientDetails.disco" />
     <None Include="Web References\OPDWebReference\GetPatOpdDetails.wsdl" />
     <None Include="Web References\OPDWebReference\Reference.map">
@@ -524,27 +488,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Home\Dashboard.cshtml" />
-    <Content Include="Views\Home\Appointment.cshtml" />
     <Content Include="Views\Masters\AddDepartments.cshtml" />
     <Content Include="Views\Masters\AddDoctors.cshtml" />
     <Content Include="Views\Masters\AddSchedule.cshtml" />
     <Content Include="Views\Shared\_LayoutPatient.cshtml" />
-    <Content Include="Views\Home\AccessDenied.cshtml" />
-    <Content Include="Views\Appointment\GetAppointments.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\TransactionPay.cshtml" />
-    <Content Include="Views\Home\TransactionResponse.cshtml" />
-    <Content Include="Views\Home\CreatePassword.cshtml" />
     <Content Include="Views\Masters\HospitalDetail.cshtml" />
-    <Content Include="Views\Appointment\PatientProfile.cshtml" />
-    <Content Include="Views\Home\MyProfile.cshtml" />
-    <Content Include="Views\Home\ForgetPassword.cshtml" />
-    <Content Include="Views\Home\ForgetUserID.cshtml" />
-    <Content Include="Views\Home\ChangePassword.cshtml" />
     <Content Include="Views\Masters\AddDoctorLeave.cshtml" />
-    <Content Include="Views\Home\ResetPassword.cshtml" />
-    <Content Include="Views\Home\CRIntegrate.cshtml" />
     <None Include="Web References\HISWebReference\GetPatientDetails.wsdl" />
     <None Include="Web References\HISWebReference\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
@@ -556,7 +505,6 @@
     <Folder Include="LabReports\" />
     <Folder Include="Reports\Bill\" />
     <Folder Include="Reports\Lab\" />
-    <Folder Include="Views\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

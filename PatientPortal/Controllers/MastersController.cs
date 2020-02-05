@@ -342,29 +342,6 @@ namespace PatientPortal.Controllers
             return View();
         }
 
-        [HttpPost]
-        public JsonResult SyncHISData(int patientId, int transactionType)
-        {
-            //send patient data to HIS portal
-            PatientDetails _details = new PatientDetails();
-            PatientInfo info = _details.GetPatientDetailById(patientId);
-            HISPatientInfoInsertModel insertModel = HomeController.setregistrationModelForHISPortal(info);
-            insertModel.Type = transactionType;
-            WebServiceIntegration service = new WebServiceIntegration();
-            string serviceResult = service.GetPatientInfoinsert(insertModel);
-
-            //save status to DB
-            PatientInfo user = new PatientInfo()
-            {
-                PatientId = info.PatientId
-            };
-            if (insertModel.Type == Convert.ToInt32(TransactionType.Registration))
-                user.RegistrationStatusHIS = serviceResult;
-            else
-                user.RenewalStatusHIS = serviceResult;
-            _details.UpdatePatientHISSyncStatus(user);
-            return Json(true, JsonRequestBehavior.AllowGet);
-        }
 
         [HttpPost]
         public JsonResult SyncHISAlreadyData(int patientId)
