@@ -277,7 +277,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BillingreportHtml.html" />
     <Content Include="Content\App\Common.css" />
     <Content Include="Content\App\css\font-awesome.css" />
     <Content Include="Content\App\css\style.css" />
@@ -444,9 +443,6 @@
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Views\Masters\AppointmentSetting.cshtml" />
-    <Content Include="Views\Masters\LabReport.cshtml" />
-    <Content Include="Views\Shared\_PatientSearch.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
     <Content Include="Scripts\umd\popper-utils.min.js.map" />
@@ -457,9 +453,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\ExceptionPage.cshtml" />
-    <Content Include="Views\Masters\SyncHISFailedTransaction.cshtml" />
-    <Content Include="Views\Masters\AddMasterLookup.cshtml" />
-    <Content Include="Views\Masters\SendMessageToPatient.cshtml" />
     <None Include="Web References\HISWebReference\GetPatientDetails.disco" />
     <None Include="Web References\OPDWebReference\GetPatOpdDetails.wsdl" />
     <None Include="Web References\OPDWebReference\Reference.map">
@@ -488,11 +481,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Masters\AddDepartments.cshtml" />
-    <Content Include="Views\Masters\AddDoctors.cshtml" />
-    <Content Include="Views\Masters\AddSchedule.cshtml" />
-    <Content Include="Views\Shared\_LayoutPatient.cshtml" />
-    <Content Include="Views\Masters\HospitalDetail.cshtml" />
     <Content Include="Views\Masters\AddDoctorLeave.cshtml" />
     <None Include="Web References\HISWebReference\GetPatientDetails.wsdl" />
     <None Include="Web References\HISWebReference\Reference.map">
