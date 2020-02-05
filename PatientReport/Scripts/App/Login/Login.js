@@ -1,4 +1,8 @@
-﻿function isNumber(evt) {
+﻿/// <reference path="../../jquery-1.10.2.js" />
+/// <reference path="../Global/App.js" />
+/// <reference path="../Global/Utility.js" />
+
+function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
