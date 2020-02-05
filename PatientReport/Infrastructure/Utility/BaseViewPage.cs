@@ -3,13 +3,9 @@ using PatientReport.BAL.Appointments;
 using PatientReport.BAL.Masters;
 using PatientReport.BAL.Patient;
 using PatientReport.Global;
-using PatientReport.Infrastructure.Adapter.WebService;
 using PatientReport.Infrastructure.Authentication;
 using PatientReport.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using static PatientReport.Global.Enums;
 
@@ -17,21 +13,7 @@ namespace PatientReport.Infrastructure.Utility
 {
     public abstract class BaseViewPage : WebViewPage
     {
-        //public virtual new CustomPrincipal User
-        //{
-        //    get { return base.User as CustomPrincipal; }
-        //}
-
-        //public virtual HospitalDetail GetHospitalDetail()
-        //{
-        //    HospitalDetails _details = new HospitalDetails();
-        //    return _details.GetHospitalDetail();
-        //}
-        //public virtual int GetAppointmentCount()
-        //{
-        //    AppointDetails _details = new AppointDetails();
-        //    return _details.PatientAppointmentCount(User.Id);
-        //}
+        
     }
 
     public abstract class BaseViewPage<TModel> : WebViewPage<TModel>
@@ -66,15 +48,5 @@ namespace PatientReport.Infrastructure.Utility
             return null;
         }
 
-        public virtual PDModel GetPatientOPDDetail()
-        {
-            if (User != null)
-            {
-                string crNumber = string.IsNullOrEmpty(WebSession.PatientCRNo) ? WebSession.PatientRegNo : WebSession.PatientCRNo;
-                var opdDetail = (new WebServiceIntegration()).GetPatientOPDDetail(crNumber, (Convert.ToInt32(OPDTypeEnum.IPD)).ToString());
-                return opdDetail;
-            }
-            return null;
-        }
     }
 }
