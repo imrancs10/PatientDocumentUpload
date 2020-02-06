@@ -1,4 +1,5 @@
 ﻿@using PatientReport.Global
+@using PatientReport.Infrastructure.Authentication;
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,80 +21,83 @@
 
 </head>
 <body>
-    <div class="navbar-wrapper">
-        <div class="container-fluid">
-            <nav class="navbar navbar-fixed-top">
-                <div class="text-center container">
+    @if ((User as CustomPrincipal) != null)
+    {
+        <div class="navbar-wrapper">
+            <div class="container-fluid">
+                <nav class="navbar navbar-fixed-top">
+                    <div class="text-center container">
 
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="text-center navbar-brand" href="#">Welcome To Document Upload System</a>
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="text-center navbar-brand" href="#">Welcome To Document Upload System</a>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="~/Masters/HomePage" class="">Home</a></li>
+                                <li class=" dropdown">
+                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patient for Doctor<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="~/Masters/PatientList"><i></i>PatientList</a></li>
+                                        <li><a href="~/Masters/PatientDetail"><i></i>PatientDetail</a></li>
+                                        <li><a href="~/Masters/UploadDocument"><i></i>UploadDocument</a></li>
+                                    </ul>
+                                </li>
+                                <li class=" dropdown">
+                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patient for Other<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="~/Masters/SearchPatient"><i></i>SearchPatient</a></li>
+                                        <li><a href="~/Masters/PatientDetail"><i></i>PatientDetail</a></li>
+                                        <li><a href="~/Masters/UploadDocument"><i></i>UploadDocument</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="nav navbar-nav pull-right">
+                                <li class=" dropdown">
+                                    <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in as  <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Change Password</a></li>
+                                        <li><a href="#">My Profile</a></li>
+                                        <li class=""><a href="~/Masters/Logout">Logout</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    @*@if (UserData.UserId!=0 && !string.IsNullOrEmpty(Convert.ToString(UserData.UserId)))
-                        {*@
-                    <div id="navbar" class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li class="active"><a href="~/Masters/HomePage" class="">Home</a></li>
-                            <li class=" dropdown">
-                                <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patient for Doctor<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="~/Masters/PatientList"><i></i>PatientList</a></li>
-                                    <li><a href="~/Masters/PatientDetail"><i></i>PatientDetail</a></li>
-                                    <li><a href="~/Masters/UploadDocument"><i></i>UploadDocument</a></li>
-                                </ul>
-                            </li>
-                            <li class=" dropdown">
-                                <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patient for Other<span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="~/Masters/SearchPatient"><i></i>SearchPatient</a></li>
-                                    <li><a href="~/Masters/PatientDetail"><i></i>PatientDetail</a></li>
-                                    <li><a href="~/Masters/UploadDocument"><i></i>UploadDocument</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="nav navbar-nav pull-right">
-                            <li class=" dropdown">
-                                <a href="#" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Signed in as  <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Change Password</a></li>
-                                    <li><a href="#">My Profile</a></li>
-                                    <li class=""><a href="~/Masters/Logout">Logout</a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    @*}*@
-                </div>
-            </nav>
+                </nav>
+            </div>
         </div>
-    </div>
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+        <hr class="text-center navbar-fixed-bottom" />
+        <footer class="text-center navbar-fixed-bottom">
+            <div class="col-md-9">
+                <p>
+                    Powered by Uptron Powertronics Limited (Undertaking of Government) &copy; @DateTime.Now.Year - Document Upload System                <!--Online Visitors:<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/433806/t/5"></script>-->
+                </p>
+            </div>
+            <div class="col-md-3">
+                @*<table width="235" border="0" cellpadding="1" cellspacing="0" title="Click to Verify - This site chose Symantec SSL for secure e-commerce and confidential communications.">
+                        <tr>
+                            <td width="235" align="center" valign="top">
+                                <script type="text/javascript" src="https://seal.websecurity.norton.com/getseal?host_name=www.drrmlimsonline.in&amp;size=M&amp;use_flash=NO&amp;use_transparent=Yes&amp;lang=en"></script><br /><a href="https://www.websecurity.symantec.com/ssl-certificate" target="_blank" style="color:#000000; text-decoration:none; font:bold 10px verdana,sans-serif; letter-spacing:.5px;text-align:center; margin:0px; padding:0px;"> ABOUT SSL CERTIFICATES</a>
+                            </td>
+                        </tr>
+                    </table>*@
+            </div>
+        </footer>
+    }
+    else
+    {
+        <div>You are not authorized to see this page</div>
+    }
 
-    <div class="container body-content">
-        @RenderBody()
-
-    </div>
-    <hr class="text-center navbar-fixed-bottom" />
-    <footer class="text-center navbar-fixed-bottom">
-        <div class="col-md-9">
-            <p>
-                Powered by Uptron Powertronics Limited (Undertaking of Government) &copy; @DateTime.Now.Year - Document Upload System                <!--Online Visitors:<script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/433806/t/5"></script>-->
-            </p>
-        </div>
-        <div class="col-md-3">
-            @*<table width="235" border="0" cellpadding="1" cellspacing="0" title="Click to Verify - This site chose Symantec SSL for secure e-commerce and confidential communications.">
-                    <tr>
-                        <td width="235" align="center" valign="top">
-                            <script type="text/javascript" src="https://seal.websecurity.norton.com/getseal?host_name=www.drrmlimsonline.in&amp;size=M&amp;use_flash=NO&amp;use_transparent=Yes&amp;lang=en"></script><br /><a href="https://www.websecurity.symantec.com/ssl-certificate" target="_blank" style="color:#000000; text-decoration:none; font:bold 10px verdana,sans-serif; letter-spacing:.5px;text-align:center; margin:0px; padding:0px;"> ABOUT SSL CERTIFICATES</a>
-                        </td>
-                    </tr>
-                </table>*@
-        </div>
-    </footer>
     @if (TempData["Alert_Title"] != null)
     {
         <div id="dialog" title="@TempData["Alert_Title"].ToString()">

@@ -38,7 +38,8 @@ namespace PatientReport.Global
             UserDeleted,
             UserInactive,
             UserBlocked,
-            NoResponse
+            NoResponse,
+            WrongUserSelected
         }
 
         public enum CrudStatus

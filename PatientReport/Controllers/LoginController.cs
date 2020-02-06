@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
@@ -8,6 +11,7 @@ using System.Web.Security;
 using PatientReport.BAL.Login;
 using PatientReport.Global;
 using PatientReport.Infrastructure.Authentication;
+using PatientReport.Models.PatientReport;
 
 namespace PatientReport.Controllers
 {
@@ -16,37 +20,68 @@ namespace PatientReport.Controllers
         // GET: Login
         public ActionResult Index()
         {
-            ViewData["LoginPage"] = true;
             return View();
         }
 
-        public ActionResult GetLogin(string username, string password)
+        public ActionResult GetLogin(string username, string password, string userrole)
         {
-            LoginDetails _details = new LoginDetails();
-            string _response = string.Empty;
-            Enums.LoginMessage message = _details.GetLogin(username, password);
-            _response = LoginResponse(message);
-            if (message == Enums.LoginMessage.Authenticated)
+            if (userrole == "Doctors")
             {
-                //setUserClaim();
-                return RedirectToAction("AddDepartments", "Masters");
+                LoginResponseModel loginResponseModel = new LoginResponseModel();
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["HIMSDoctorApiBaseUrl"].ToString());
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    var response = client.GetAsync("/RMLAPI/api/Authentication?id=&username=" + username + "&password=" + password + "").Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseString = response.Content.ReadAsStringAsync().Result;
+                        loginResponseModel = response.Content.ReadAsAsync<LoginResponseModel>().Result;
+                    }
+                    else
+                    {
+                        SetAlertMessage(Enums.LoginMessage.LoginFailed.ToString(), "Login Response");
+                        return View("Index");
+                    }
+                }
+
+                if (loginResponseModel != null)
+                {
+                    if (loginResponseModel.Status == true)
+                    {
+                        setUserClaim(loginResponseModel);
+                        return RedirectToAction("HomePage", "Masters");
+                    }
+                    else
+                    {
+                        SetAlertMessage(Enums.LoginMessage.InvalidCreadential.ToString(), "Login Response");
+                        return View("Index");
+                    }
+                }
+                else
+                {
+                    SetAlertMessage(Enums.LoginMessage.InvalidCreadential.ToString(), "Login Response");
+                    return View("Index");
+                }
             }
             else
             {
-                SetAlertMessage(_response, "Login Response");
-                return View("index");
+                SetAlertMessage(Enums.LoginMessage.WrongUserSelected.ToString(), "Login Response");
+                return View("Index");
             }
+
         }
 
-        private void setUserClaim()
+        private void setUserClaim(LoginResponseModel loginResponseModel)
         {
             CustomPrincipalSerializeModel serializeModel = new CustomPrincipalSerializeModel();
-            serializeModel.Id = UserData.UserId;
-            serializeModel.FirstName = string.IsNullOrEmpty(UserData.FirstName) ? string.Empty : UserData.FirstName;
-            serializeModel.MiddleName = string.IsNullOrEmpty(UserData.MiddleName) ? string.Empty : UserData.MiddleName;
-            serializeModel.LastName = string.IsNullOrEmpty(UserData.LastName) ? string.Empty : UserData.LastName;
-            serializeModel.LastName = string.IsNullOrEmpty(UserData.Username) ? string.Empty : UserData.Username;
-            serializeModel.Email = string.IsNullOrEmpty(UserData.Email) ? string.Empty : UserData.Email;
+            serializeModel.Id = loginResponseModel.DoctorId;
+            serializeModel.Name = string.IsNullOrEmpty(loginResponseModel.Name) ? string.Empty : loginResponseModel.Name;
+            serializeModel.CODE = string.IsNullOrEmpty(loginResponseModel.CODE) ? string.Empty : loginResponseModel.CODE;
+            serializeModel.Mobile = string.IsNullOrEmpty(loginResponseModel.Mobile) ? string.Empty : loginResponseModel.Mobile;
+            serializeModel.DepartmentID = string.IsNullOrEmpty(loginResponseModel.Mobile) ? string.Empty : loginResponseModel.Mobile; ;
+            serializeModel.Email = string.IsNullOrEmpty(loginResponseModel.EmailAddress) ? string.Empty : loginResponseModel.EmailAddress; ;
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
 

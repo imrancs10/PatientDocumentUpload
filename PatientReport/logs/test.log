@@ -2181,3 +2181,9 @@ Error Number:53,State:0,Class:20
    at System.Data.Entity.Core.EntityClient.EntityConnection.Open()
 ClientConnectionId:00000000-0000-0000-0000-000000000000
 Error Number:53,State:0,Class:20
+2020-02-06 19:47:25,207 [6] ERROR PatientReport.Infrastructure.Utility.CustomExceptionFilter 
+2020-02-06 19:49:07,203 [6] ERROR PatientReport.Infrastructure.Utility.CustomExceptionFilter 
+2020-02-06 19:51:42,624 [6] ERROR PatientReport.Infrastructure.Utility.CustomExceptionFilter 
+2020-02-06 19:56:12,392 [10] ERROR PatientReport.Infrastructure.Utility.CustomExceptionFilter 
+2020-02-06 20:13:04,617 [16] ERROR PatientReport.Infrastructure.Utility.CustomExceptionFilter 
+2020-02-06 20:13:20,113 [16] ERROR PatientReport.Infrastructure.Utility.CustomExceptionFilter 

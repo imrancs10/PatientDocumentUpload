@@ -1,36 +1,160 @@
-﻿
+﻿@using PatientReport.Global
+@using PatientReport.Infrastructure.Authentication;
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "HomePage";
+    Layout = null;
 }
-<link href="~/Content/App/Login/Login.css" rel="stylesheet" />
-
-<div id="loginContainer" class="dialog dialog-effect-in">
-    <div class="dialog-front">
-        <div class="dialog-content">
-            <a class="text-center navbar-brand" href="#"> Document Upload System </a>
-            <form id="login_form" class="dialog-form" action="/login/getlogin" method="POST">
-                <fieldset>
-                    <legend></legend>
-                    <div class="form-group">
-                        <label for="user_role" class="control-label">UserRole:</label>
-                        <select id="user_role" class="form-control" name="userrole" autofocus><option>Doctors</option><option>Others</option></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="user_username" class="control-label">UserId:</label>
-                        <input type="text" id="user_username" class="form-control" name="username" autofocus />
-                    </div>
-                    <div class="form-group">
-                        <label for="user_password" class="control-label">Password:</label>
-                        <input type="password" id="user_password" class="form-control" name="password" />
-                    </div>
-                    <div class="pad-top-20 pad-btm-20">
-                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Submit">
-                    </div>
-                </fieldset>
-            </form>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Document Upload System</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link href="~/Content/App/Common.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="~/Scripts/jquery-ui.js"></script>
+    <link href="~/Content/jquery-ui.css" rel="stylesheet" />
+    <link href="~/Content/Menu.css" rel="stylesheet" />
+    <script src="~/Scripts/App/Global/App.js"></script>
+    <script src="~/Scripts/App/Global/Utility.js"></script>
+    <link href="~/Content/App/Login/Login.css" rel="stylesheet" />
+    <script src="~/Scripts/App/Login/Login.js"></script>
+</head>
+<body>
+    <div class="navbar-wrapper">
+        <div class="container-fluid">
+            <nav class="navbar navbar-fixed-top">
+                <div class="text-center container">
+                </div>
+            </nav>
         </div>
     </div>
-</div>
+    <div class="container body-content">
+        <div id="loginContainer" class="dialog dialog-effect-in">
+            <div class="dialog-front">
+                <div class="dialog-content">
+                    <a class="text-center navbar-brand" href="#"> Document Upload System </a>
+                    <form id="login_form" class="dialog-form" action="/login/getlogin" method="POST">
+                        <fieldset>
+                            <legend></legend>
+                            <div class="form-group">
+                                <label for="user_role" class="control-label">UserRole:</label>
+                                <select id="user_role" class="form-control" name="userrole" autofocus>
+                                    <option value="Doctors">Doctors</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="user_username" class="control-label">UserId:</label>
+                                <input type="text" id="user_username" class="form-control" name="username" />
+                            </div>
+                            <div class="form-group">
+                                <label for="user_password" class="control-label">Password:</label>
+                                <input type="password" id="user_password" class="form-control" name="password" />
+                            </div>
+                            <div class="pad-top-20 pad-btm-20">
+                                <input type="submit" class="btn btn-primary btn-block btn-lg" value="Submit">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="text-center navbar-fixed-bottom" />
+    <footer class="text-center navbar-fixed-bottom">
+        <div class="col-md-9">
+            <p>
+                Powered by Uptron Powertronics Limited (Undertaking of Government) &copy; @DateTime.Now.Year - Document Upload System
+            </p>
+        </div>
+        <div class="col-md-3">
+        </div>
+    </footer>
 
-<script src="~/Scripts/App/Login/Login.js"></script>
+
+    @if (TempData["Alert_Title"] != null)
+    {
+        <div id="dialog" title="@TempData["Alert_Title"].ToString()">
+            @if (TempData["Alert_Message"] != null)
+            {
+                <p>@TempData["Alert_Message"].ToString()</p>
+            }
+            else
+            {
+                <p>Success..!</p>
+            }
+        </div>
+    }
+
+
+    @*Alert*@
+    <div id="alertModel" style="display:none;" title="">
+        <p></p>
+    </div>
+
+    <script>
+        $(function () {
+
+            $("#dialog").dialog({
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "OK": function () {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        });
+    </script>
+    @*Ajax Loader*@
+
+    <div class="ajaxloader">
+        <img src="~/img/ajax-loader.gif" />
+    </div>
+    <style>
+        .ajaxloader {
+            background: #808080a3;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+            .ajaxloader img {
+                width: 80px;
+                height: 80px;
+                position: absolute;
+                top: 43%;
+                left: 45%;
+            }
+    </style>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
