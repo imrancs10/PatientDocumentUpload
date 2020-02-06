@@ -3,7 +3,7 @@
     ViewBag.Title = "PatientList";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="~/Scripts/App/Masters/DoctorLeave.js"></script>
+<script src="~/Scripts/App/Masters/PatientList.js"></script>
 <div class="">
     <div class="col-sm-12 col-lg-12" style="padding-top:20px;">
         <div class="panel panel-primary">
@@ -11,51 +11,29 @@
             <div class="panel-body">
                 <div class="col-container">
                     <div class="col">
-                        <select class="form-control" id="ddlDepartments" name="departmentid" required="required">
-                            <option value="0">Select Patient Type</option>
-                            <option value="1">OPD</option>
-                            <option value="2">IPD</option>
+                        <select class="form-control" id="ddlPatientType" name="departmentid" required="required">
+                            <option value="">Select Patient Type</option>
+                            <option value="OPD">OPD</option>
+                            <option value="IPD">IPD</option>
                         </select>
                     </div>
                     <div class="col">
-                        <select class="form-control" id="ddlDoctors" name="doctorid" required="required">
-                            <option value="">Select Patient</option>
-                        </select>
-                    </div>
-
-                    @*<div class="col">
-                        <input class="form-control" type="date" id="txtleavedate" name="leavedate" required="required" />
-                    </div>*@
-
-                    <div class="col">
-                        <button class="btn btn-primary" id="btnSave">Search</button>
+                        <button class="btn btn-primary" id="btnSearch">Search</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-sm-12 col-lg-12" style="padding-top:20px;">
+    <div class="col-sm-12 col-lg-12 hidden" style="padding-top:20px;" id="tablePatient">
         <div class="panel panel-primary">
             <div class="panel-heading">Patient Details</div>
             <div class="panel-body">
                 <div class="table table-responsive">
                     <table class="table table-bordered table-hover table-responsive text-center" id="docTable">
                         <thead>
-                            <tr>
-                                <th style="width:10%">Sr. No.</th>
-                                <th name="DoctorName">Registration/CR N0</th>
-                                <th name="DoctorName">Patient Name</th>
-                                <th name="DoctorName">Fathers Name</th>
-                                <th name="DoctorName">Department Name</th>
-                                <th name="DoctorName">EmailId</th>
-                                <th name="DoctorName">Mobile No</th>
-                                <th name="DoctorName">Action</th>
-                                <th style="width:20%">Document Format</th>
-                            </tr>
                         </thead>
-                        @*<tbody>
-                            <tr><td colspan="4">No Record Found</td></tr>
-                        </tbody>*@
+                        <tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -70,10 +48,10 @@
 
     .col {
         display: table-cell; /* Make elements inside the container behave like table cells */
-        width:25%;
+        width: 25%;
     }
 
-        .col select,input {
+        .col select, input {
             width: 95% !important;
         }
 </style>
