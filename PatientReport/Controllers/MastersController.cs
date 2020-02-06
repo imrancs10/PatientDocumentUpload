@@ -92,8 +92,9 @@ namespace PatientReport.Controllers
             return null;
         }
 
-        public ActionResult PatientDetail()
+        public ActionResult PatientDetail(string crNumber)
         {
+            crNumber = crNumber.Replace('~', ':').Replace('_', '/');
             return View();
         }
         public ActionResult UploadDocument()

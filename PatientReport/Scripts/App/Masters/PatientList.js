@@ -27,7 +27,7 @@
                                 column += '<td>' + patientRow.bedno + '</td>';
                                 column += '<td>' + patientRow.roomno + '</td>';
                                 column += '<td>' + patientRow.admittime + '</td>';
-                                column += '<td><a style="color:blue;" href="/Masters/PatientDetail/' + patientRow.PCode.replace(':', '~').replace('/', '_') + '">Detail</a></td>';
+                                column += '<td><a style="color:blue;" href="/Masters/PatientDetail?crNumber=' + patientRow.PCode.replace(':', '~').replace('/', '_') + '">Detail</a></td>';
                                 var row = '<tr>' + column + '</tr>';
                                 $('#tablePatient tbody').append(row);
                             });
@@ -41,7 +41,7 @@
                                 column += '<td>' + patientRow.Sex + '</td>';
                                 column += '<td>' + patientRow.Age + '</td>';
                                 column += '<td>' + patientRow.timeoftran + '</td>';
-                                column += '<td><a style="color:blue;" href="/Masters/PatientDetail/' + patientRow.PCode.replace(':', '~').replace('/', '_') + '">Detail</a></td>';
+                                column += '<td><a style="color:blue;" href="/Masters/PatientDetail?crNumber=' + patientRow.PCode.replace(':', '~').replace('/', '_') + '">Detail</a></td>';
                                 var row = '<tr>' + column + '</tr>';
                                 $('#tablePatient tbody').append(row);
                             });
