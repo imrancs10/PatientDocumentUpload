@@ -7,12 +7,14 @@
 <div class="">
     <div class="col-sm-12 col-lg-12" style="padding-top:20px;">
         <div class="panel panel-primary">
-            <div class="panel-heading">Find Patient Type</div>
+            <div class="panel-heading">Patient Type</div>
             <div class="panel-body">
                 <div class="col-container">
                     <div class="col">
                         <select class="form-control" id="ddlDepartments" name="departmentid" required="required">
-                            <option value="">Select Patient Type</option>
+                            <option value="0">Select Patient Type</option>
+                            <option value="1">OPD</option>
+                            <option value="2">IPD</option>
                         </select>
                     </div>
                     <div class="col">
@@ -51,9 +53,9 @@
                                 <th style="width:20%">Document Format</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        @*<tbody>
                             <tr><td colspan="4">No Record Found</td></tr>
-                        </tbody>
+                        </tbody>*@
                     </table>
                 </div>
             </div>
