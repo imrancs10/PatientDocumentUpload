@@ -435,7 +435,11 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
-    <Content Include="Views\Masters\AddDoctorLeave.cshtml" />
+    <Content Include="Views\Masters\PatientList.cshtml" />
+    <Content Include="Views\Masters\HomePage.cshtml" />
+    <Content Include="Views\Masters\PatientDetail.cshtml" />
+    <Content Include="Views\Masters\UploadDocument.cshtml" />
+    <Content Include="Views\Masters\SearchPatient.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

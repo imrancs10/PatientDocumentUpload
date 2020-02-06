@@ -85,10 +85,10 @@ namespace PatientReport.Controllers
             return Json(_details.DaysList(), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult SearchPatient(string value)
-        {
-            _details = new CommonDetails();
-            return Json(_details.PatientSearch(value),JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult SearchPatient(string value)
+        //{
+        //    _details = new CommonDetails();
+        //    return Json(_details.PatientSearch(value),JsonRequestBehavior.AllowGet);
+        //}
     }
 }

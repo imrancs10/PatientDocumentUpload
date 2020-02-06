@@ -7,10 +7,29 @@ namespace PatientReport.Controllers
     {
         DepartmentDetails _details = null;
 
-        [HttpGet]
-        public ActionResult AddDoctorLeave()
+        public ActionResult HomePage()
+        {
+            return View();
+        }   
+
+        public ActionResult PatientList()
         {
             return View();
         }
+
+        public ActionResult PatientDetail()
+        {
+            return View();
+        }
+        public ActionResult UploadDocument()
+        {
+            return View();
+        }
+        public ActionResult SearchPatient()
+        {
+            return View();
+        }
+        
+
     }
 }
