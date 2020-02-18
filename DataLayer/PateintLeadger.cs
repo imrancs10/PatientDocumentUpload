@@ -14,12 +14,11 @@ namespace DataLayer
     
     public partial class PateintLeadger
     {
-        public int Id { get; set; }
         public decimal Billid { get; set; }
         public string godcode { get; set; }
         public Nullable<decimal> opdid { get; set; }
         public Nullable<decimal> counterid { get; set; }
-        public decimal PId { get; set; }
+        public Nullable<decimal> PId { get; set; }
         public Nullable<decimal> regtranid { get; set; }
         public Nullable<decimal> inpatientid { get; set; }
         public string vtype { get; set; }
@@ -66,6 +65,7 @@ namespace DataLayer
         public string pcode { get; set; }
         public string ipno { get; set; }
         public string entrytype { get; set; }
+        public int Id { get; set; }
         public string Location { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿
+﻿@using DataLayer
 @{
     /**/
 
@@ -12,29 +12,28 @@
         <div class="panel panel-primary">
             <div class="panel-heading">Document Upload for Patient</div>
             <div class="panel-body">
-                @using (Html.BeginForm("HospitalDetail", "Masters", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                @using (Html.BeginForm("PatientDetail", "Masters", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     <div class="container">
                         <table style="width:100%">
                             <tr>
                                 <td style="width:30%">
                                     <label>Document Title</label>
-                                    <input type="text" name="name" id="name" style="width: 100%;" required />
+                                    <input type="text" name="title" id="title" style="width: 100%;" required />
                                 </td>
                                 <td style="width:30%">
                                     <label>Document Type</label>
                                     <select class="form-control" style="width: 100%;" id="doctype" name="DocType" required="required">
                                         <option value="0">Select Document Type</option>
-                                        <option value="1">PDF</option>
-                                        <option value="2">Doc</option>
-                                        <option value="2">Image</option>
-                                        <option value="2">Other</option>
+                                        <option value="PDF">PDF</option>
+                                        <option value="Doc">Doc</option>
+                                        <option value="Image">Image</option>
+                                        <option value="Other">Other</option>
                                     </select>
-                                    @*<input type="text" name="name" id="name" style="width: 100%;" required />*@
                                 </td>
                                 <td style="width:30%">
                                     <label>Document</label>
-                                    <input type="file" name="file1" id="file1" style="width: 100%;" required />
+                                    <input type="file" name="document" id="document" style="width: 100%;" required />
                                     <br />
                                 </td>
                                 <td style="width:10%">
@@ -48,54 +47,40 @@
                 <div class="container">
                     <table style="width:100%;">
                         <thead>
-                        <th>ID</th>
-                        <th>Document Title</th>
-                        <th>Document Type</th>
-                        <th>Document</th>
+                            <tr>
+                                <th>ID</th>
+                                <th>Document Title</th>
+                                <th>Document Type</th>
+                                <th>Document</th>
+                                <th>Delete</th>
+                            </tr>
                         </thead>
-                        @*<tbody>
-                                @{
-                                    var hospitals = (List<HospitalDetail>)(ViewData["hospitals"]);
-                                    if (hospitals != null)
+                        <tbody>
+                            @{
+                                var documents = (List<PatientDocument>)(ViewData["documents"]);
+                                if (documents != null)
+                                {
+                                    foreach (var document in documents)
                                     {
-                                        foreach (var hospital in hospitals)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    @hospital.Id
-                                                </td>
-                                                <td>
-                                                    @hospital.HospitalName
-                                                </td>
-                                                <td>
-                                                    @if (hospital.HospitalLogo != null)
-                                                    {
-                                                        var base64 = Convert.ToBase64String(hospital.HospitalLogo);
-                                                        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
-                                                        <img src="@imgsrc" class="img-responsive" alt="banner" style="width:50px" />
-                                                    }
-                                                </td>
-                                                <td>
-                                                    <a href="#">Edit(not implemented)</a>
-                                                </td>
-                                                <td>
-                                                    @Html.ActionLink(
-                                                                    "Delete",                                                  // linkText
-                                                                    "DeleteHospital",                                         // actionName
-                                                                    "Masters",                                                   // routeValues
-                                                                    new {                                                     // htmlAttributes
-                                                                        //Id = hospital.Id
-                                                                    },
-                                                                    new {
-                                                                        @class = "navbar-brand"
-                                                                    }
-                                                                )
-                                                </td>
-                                            </tr>
-                                        }
+                                        <tr>
+                                            <td>
+                                                @document.Id
+                                            </td>
+                                            <td>
+                                                @document.DocumentTitle
+                                            </td>
+                                            <td>
+                                                @document.DocumentType
+                                            </td>
+                                            <td></td>
+                                            <td>
+                                                @Html.ActionLink("Delete", "DeleteHospital", "Masters", new { Id = document.Id }, new { @class = "navbar-brand" })
+                                            </td>
+                                        </tr>
                                     }
                                 }
-                            </tbody>*@
+                            }
+                        </tbody>
                     </table>
                 </div>
             </div>

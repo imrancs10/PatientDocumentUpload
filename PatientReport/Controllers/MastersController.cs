@@ -1,5 +1,4 @@
 ﻿using PatientReport.BAL.Masters;
-using PatientReport.BAL.Patient;
 using PatientReport.Infrastructure.Authentication;
 using PatientReport.Models.PatientReport;
 using System;
@@ -8,14 +7,14 @@ using System.Configuration;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Web;
 using System.Web.Mvc;
+using DataLayer;
 
 namespace PatientReport.Controllers
 {
     public class MastersController : CommonController
     {
-        DepartmentDetails _details = null;
-
         public ActionResult HomePage()
         {
             return View();
@@ -47,14 +46,7 @@ namespace PatientReport.Controllers
                             loginResponseModel = response.Content.ReadAsAsync<List<IPDListResponseModel>>().Result;
                         }
                     }
-                    if (loginResponseModel.Any())
-                    {
-                        return Json(loginResponseModel);
-                    }
-                    else
-                    {
-                        return Json("No Recrod Found");
-                    }
+                    return Json(loginResponseModel);
                 }
                 else if (patienttype == "OPD")
                 {
@@ -75,14 +67,7 @@ namespace PatientReport.Controllers
                             return Json("ServerError");
                         }
                     }
-                    if (loginResponseModel.Any())
-                    {
-                        return Json(loginResponseModel);
-                    }
-                    else
-                    {
-                        return Json("No Recrod Found");
-                    }
+                    return Json(loginResponseModel);
                 }
             }
             else
@@ -95,7 +80,33 @@ namespace PatientReport.Controllers
         public ActionResult PatientDetail(string crNumber)
         {
             crNumber = crNumber.Replace('~', ':').Replace('_', '/');
+            DocumentDetails details = new DocumentDetails();
+            ViewData["documents"] = details.GetAllDocumentDetail(crNumber);
+            TempData["crNumber"] = crNumber;
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult PatientDetail(string title, string DocType, HttpPostedFileBase document)
+        {
+            PatientDocument PatientDocument = new PatientDocument();
+            if (document != null && document.ContentLength > 0)
+            {
+                PatientDocument.DocumentTitle = title;
+                PatientDocument.DocumentType = DocType;
+                PatientDocument.CRNumber = Convert.ToString(TempData["crNumber"]);
+                //hospital.HospitalLogo = new byte[File1.ContentLength];
+                //File1.InputStream.Read(hospital.HospitalLogo, 0, File1.ContentLength);
+                DocumentDetails details = new DocumentDetails();
+                details.SaveDocumentDetail(PatientDocument);
+                SetAlertMessage("Document saved Successfully", "Document Entry");
+                return RedirectToAction("PatientDetail", new { crNumber = Convert.ToString(TempData["crNumber"]) });
+            }
+            else
+            {
+                SetAlertMessage("Hospital detail not saved", "Hospital Entry");
+                return RedirectToAction("HospitalDetail");
+            }
         }
         public ActionResult UploadDocument()
         {
@@ -106,6 +117,12 @@ namespace PatientReport.Controllers
             return View();
         }
 
+        public ActionResult Logout()
+        {
+            Session.Abandon();
+            Session.Clear();
+            return RedirectToAction("Index", "Login");
+        }
 
     }
 }

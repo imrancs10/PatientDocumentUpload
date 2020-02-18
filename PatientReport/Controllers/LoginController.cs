@@ -8,7 +8,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Web.Security;
-using PatientReport.BAL.Login;
 using PatientReport.Global;
 using PatientReport.Infrastructure.Authentication;
 using PatientReport.Models.PatientReport;

@@ -32,7 +32,5 @@ namespace DataLayer
         public string BillNo { get; set; }
         public string RefNo { get; set; }
         public int DoctorId { get; set; }
-    
-        public virtual Doctor Doctor { get; set; }
     }
 }

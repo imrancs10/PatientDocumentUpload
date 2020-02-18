@@ -4,60 +4,61 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0d25c6a93510442fac667406150cd371" Name="Diagram1" ZoomLevel="108">
-        <EntityTypeShape EntityType="PatientReportModel.AppointmentInfo" Width="1.5" PointX="13.5" PointY="12.625" />
-        <EntityTypeShape EntityType="PatientReportModel.AppointmentSetting" Width="1.5" PointX="5.75" PointY="1" />
-        <EntityTypeShape EntityType="PatientReportModel.City" Width="1.5" PointX="3" PointY="13.375" />
-        <EntityTypeShape EntityType="PatientReportModel.DayMaster" Width="1.5" PointX="14.25" PointY="3.375" />
-        <EntityTypeShape EntityType="PatientReportModel.Department" Width="1.5" PointX="6" PointY="7.375" />
-        <EntityTypeShape EntityType="PatientReportModel.Doctor" Width="1.5" PointX="11.25" PointY="8.75" />
-        <EntityTypeShape EntityType="PatientReportModel.DoctorLeave" Width="1.5" PointX="13.5" PointY="18" />
-        <EntityTypeShape EntityType="PatientReportModel.DoctorSchedule" Width="1.5" PointX="16.5" PointY="8.875" />
-        <EntityTypeShape EntityType="PatientReportModel.Gbl_Master_Login" Width="1.5" PointX="3" PointY="1.875" />
-        <EntityTypeShape EntityType="PatientReportModel.Gbl_Master_User" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="PatientReportModel.HospitalDetail" Width="1.5" PointX="2.75" PointY="6" />
-        <EntityTypeShape EntityType="PatientReportModel.LabReport" Width="1.5" PointX="10.5" PointY="22.5" />
-        <EntityTypeShape EntityType="PatientReportModel.LabreportPdf" Width="1.5" PointX="13.5" PointY="6.625" />
-        <EntityTypeShape EntityType="PatientReportModel.MeridiemMaster" Width="1.5" PointX="14.25" PointY="0.75" />
-        <EntityTypeShape EntityType="PatientReportModel.PateintLeadger" Width="1.5" PointX="15.75" PointY="13" />
-        <EntityTypeShape EntityType="PatientReportModel.PatientInfo" Width="1.5" PointX="8.25" PointY="10" />
-        <EntityTypeShape EntityType="PatientReportModel.PatientInfoCRClone" Width="1.5" PointX="5.25" PointY="10.75" />
-        <EntityTypeShape EntityType="PatientReportModel.PatientLoginEntry" Width="1.5" PointX="10.5" PointY="13.125" />
-        <EntityTypeShape EntityType="PatientReportModel.PatientLoginHistory" Width="1.5" PointX="10.5" PointY="16.125" />
-        <EntityTypeShape EntityType="PatientReportModel.PatientTransaction" Width="1.5" PointX="10.5" PointY="18.875" />
-        <EntityTypeShape EntityType="PatientReportModel.State" Width="1.5" PointX="0.75" PointY="13.5" />
-        <AssociationConnector Association="PatientReportModel.FK_AppointmentInfo_Doctor" />
-        <AssociationConnector Association="PatientReportModel.FK_AppointmentInfo_PatientInfo" />
-        <AssociationConnector Association="PatientReportModel.FK_City_State" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfo_City" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfoCRClone_City" />
-        <AssociationConnector Association="PatientReportModel.FK_DoctorScheduleDay_DayMaster1" />
-        <AssociationConnector Association="PatientReportModel.FK_Doctor_Doctor" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfo_Department" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfoCRClone_Department" />
-        <AssociationConnector Association="PatientReportModel.FK_DoctorLeave_Doctor" />
-        <AssociationConnector Association="PatientReportModel.FK_DoctorScheduleDay_DoctorSchedule" />
-        <AssociationConnector Association="PatientReportModel.FK_LabreportPdf_Doctor" />
-        <AssociationConnector Association="PatientReportModel.FK_DoctorScheduleDay_MeridiemMaster" />
-        <AssociationConnector Association="PatientReportModel.FK_DoctorScheduleDay_MeridiemMaster1" />
-        <AssociationConnector Association="PatientReportModel.FK_Gbl_Master_Login_Gbl_Master_User" />
-        <AssociationConnector Association="PatientReportModel.FK_LabReport_PatientInfo" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfo_PatientInfo" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfo_State" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientLoginEntry_PatientInfo" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientLoginHistory_PatientInfo" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientTransaction_PatientInfo" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfoCRClone_PatientInfoCRClone" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfoCRClone_State" />
-        <EntityTypeShape EntityType="PatientReportModel.MasterLookup" Width="1.5" PointX="5.375" PointY="4.75" />
-        <EntityTypeShape EntityType="PatientReportModel.PatientMessage" Width="1.5" PointX="10.5" PointY="5.75" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientMessage_PatientInfo" />
-        <EntityTypeShape EntityType="PatientReportModel.DoctorType" Width="1.5" PointX="8.375" PointY="0.875" />
-        <AssociationConnector Association="PatientReportModel.FK_Doctor_DoctorType" />
-        <EntityTypeShape EntityType="PatientReportModel.PatientInfoTemporary" Width="1.5" PointX="17.25" PointY="0.75" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfoTemporary_City" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfoTemporary_Department" />
-        <AssociationConnector Association="PatientReportModel.FK_PatientInfoTemporary_State" />
+      <Diagram DiagramId="777702e931de498cad79c9a2794a17f3" Name="Diagram1">
+        <EntityTypeShape EntityType="PatientPortalModel.AppointmentInfo" Width="1.5" PointX="13.5" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.AppointmentSetting" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.City" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.DayMaster" Width="1.5" PointX="14.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.Department" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.Doctor" Width="1.5" PointX="11.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.DoctorLeave" Width="1.5" PointX="13.5" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.DoctorSchedule" Width="1.5" PointX="16.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.Gbl_Master_Login" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.Gbl_Master_User" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.HospitalDetail" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.LabReport" Width="1.5" PointX="7.5" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.LabreportPdf" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.MasterLookup" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.MeridiemMaster" Width="1.5" PointX="14.25" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PateintLeadger" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PatientBillReport" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PatientDocument" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PatientInfo" Width="1.5" PointX="5.25" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PatientInfoCRClone" Width="1.5" PointX="8.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PatientInfoTemporary" Width="1.5" PointX="11.25" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PatientLabReport" Width="1.5" PointX="7.5" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PatientLoginEntry" Width="1.5" PointX="7.5" PointY="31.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PatientLoginHistory" Width="1.5" PointX="7.5" PointY="34.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PatientMessage" Width="1.5" PointX="7.5" PointY="37.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.PatientTransaction" Width="1.5" PointX="7.5" PointY="40.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PatientPortalModel.State" Width="1.5" PointX="0.75" PointY="21.5" IsExpanded="true" />
+        <AssociationConnector Association="PatientPortalModel.FK_AppointmentInfo_Doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_AppointmentInfo_PatientInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_City_State" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfo_City" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfoCRClone_City" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfoTemporary_City" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_DoctorScheduleDay_DayMaster1" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_Doctor_Doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfo_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfoCRClone_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfoTemporary_Department" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_DoctorLeave_Doctor" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_DoctorScheduleDay_DoctorSchedule" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_DoctorScheduleDay_MeridiemMaster" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_DoctorScheduleDay_MeridiemMaster1" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_Gbl_Master_Login_Gbl_Master_User" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_LabReport_PatientInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK__PatientLa__Patie__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfo_PatientInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfo_State" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientLoginEntry_PatientInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientLoginHistory_PatientInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientMessage_PatientInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientTransaction_PatientInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfoCRClone_PatientInfoCRClone" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfoCRClone_State" ManuallyRouted="false" />
+        <AssociationConnector Association="PatientPortalModel.FK_PatientInfoTemporary_State" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

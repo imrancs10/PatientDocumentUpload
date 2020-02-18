@@ -12,18 +12,17 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class DoctorType
+    public partial class PatientBillReport
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DoctorType()
-        {
-            this.Doctors = new HashSet<Doctor>();
-        }
-    
         public int Id { get; set; }
-        public string DoctorType1 { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Doctor> Doctors { get; set; }
+        public Nullable<int> BillId { get; set; }
+        public string BillNo { get; set; }
+        public Nullable<System.DateTime> BillDate { get; set; }
+        public string BillType { get; set; }
+        public Nullable<decimal> BillAmount { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<System.DateTime> ModificationDate { get; set; }
+        public string ReportUrl { get; set; }
+        public Nullable<decimal> PId { get; set; }
     }
 }

@@ -19,10 +19,11 @@ namespace DataLayer
         {
             this.AppointmentInfoes = new HashSet<AppointmentInfo>();
             this.LabReports = new HashSet<LabReport>();
+            this.PatientLabReports = new HashSet<PatientLabReport>();
             this.PatientLoginEntries = new HashSet<PatientLoginEntry>();
             this.PatientLoginHistories = new HashSet<PatientLoginHistory>();
-            this.PatientTransactions = new HashSet<PatientTransaction>();
             this.PatientMessages = new HashSet<PatientMessage>();
+            this.PatientTransactions = new HashSet<PatientTransaction>();
         }
     
         public int PatientId { get; set; }
@@ -65,6 +66,8 @@ namespace DataLayer
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LabReport> LabReports { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PatientLabReport> PatientLabReports { get; set; }
         public virtual PatientInfo PatientInfo1 { get; set; }
         public virtual PatientInfo PatientInfo2 { get; set; }
         public virtual State State { get; set; }
@@ -73,8 +76,8 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientLoginHistory> PatientLoginHistories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PatientTransaction> PatientTransactions { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PatientMessage> PatientMessages { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PatientTransaction> PatientTransactions { get; set; }
     }
 }

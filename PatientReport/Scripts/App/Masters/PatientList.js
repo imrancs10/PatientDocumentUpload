@@ -11,10 +11,12 @@
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     if (data.length > 0) {
+                        $('#noRecordFound').addClass('hidden');
                         $("#tablePatient thead").empty();
                         $("#tablePatient tbody").empty();
                         addColumns($('#ddlPatientType option:selected').val());
                         if ($('#ddlPatientType option:selected').val() == 'IPD') {
+                            $('#reportdetail').html('Patient Details - IPD List');
                             $.each(data, function (index, patientRow) {
                                 var column = '<td>' + (index + 1) + '</td>';
                                 column += '<td>' + patientRow.PCode + '</td>';
@@ -33,6 +35,7 @@
                             });
                         }
                         else if ($('#ddlPatientType option:selected').val() == 'OPD') {
+                            $('#reportdetail').html('Patient Details - OPD List');
                             $.each(data, function (index, patientRow) {
                                 var column = '<td>' + (index + 1) + '</td>';
                                 column += '<td>' + patientRow.PCode + '</td>';
@@ -50,6 +53,7 @@
                     }
                     else {
                         $('#tablePatient').addClass('hidden');
+                        $('#noRecordFound').removeClass('hidden');
                     }
                 },
                 failure: function (response) {
