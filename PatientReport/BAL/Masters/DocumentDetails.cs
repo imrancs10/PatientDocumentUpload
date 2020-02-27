@@ -17,7 +17,7 @@ namespace PatientReport.BAL.Masters
         {
             _db = new PatientPortalEntities();
             int _effectRow = 0;
-            var _documentRow = _db.PatientDocuments.Where(x => x.DocumentTitle.Equals(document.DocumentTitle)).FirstOrDefault();
+            var _documentRow = _db.PatientDocuments.Where(x => x.DocumentTitle == document.DocumentTitle.Trim() && x.CRNumber == document.CRNumber).FirstOrDefault();
             if (_documentRow == null)
             {
                 _db.Entry(document).State = EntityState.Added;

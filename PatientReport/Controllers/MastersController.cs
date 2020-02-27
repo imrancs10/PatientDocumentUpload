@@ -10,6 +10,8 @@ using System.Net.Http.Headers;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer;
+using PatientReport.Global;
+using System.IO;
 
 namespace PatientReport.Controllers
 {
@@ -95,19 +97,44 @@ namespace PatientReport.Controllers
                 PatientDocument.DocumentTitle = title;
                 PatientDocument.DocumentType = DocType;
                 PatientDocument.CRNumber = Convert.ToString(TempData["crNumber"]);
+
+                //save file start
                 //hospital.HospitalLogo = new byte[File1.ContentLength];
                 //File1.InputStream.Read(hospital.HospitalLogo, 0, File1.ContentLength);
-                DocumentDetails details = new DocumentDetails();
-                details.SaveDocumentDetail(PatientDocument);
-                SetAlertMessage("Document saved Successfully", "Document Entry");
-                return RedirectToAction("PatientDetail", new { crNumber = Convert.ToString(TempData["crNumber"]) });
+                //Use Namespace called :  System.IO  
+                if (document.ContentLength > 0)
+                {
+                    //var fileName = Path.GetFileName(document.FileName);
+                    //var path = System.IO.Path.Combine(Server.MapPath("~/DownloadServer/"), fileName);
+                    ////Path.Combine(Server.MapPath(ConfigurationManager.AppSettings["DocumentPath"].ToString()), fileName);
+                    //document.SaveAs(path);
+                    //save file end
+                    DocumentDetails details = new DocumentDetails();
+                    var result = details.SaveDocumentDetail(PatientDocument);
+                    if (result == Enums.CrudStatus.DataAlreadyExist)
+                    {
+                        SetAlertMessage("Document already exist with same name", "Document Entry");
+                    }
+                    else
+                    {
+                        SetAlertMessage("Document saved Successfully", "Document Entry");
+                    }
+
+                    return RedirectToAction("PatientDetail", new { crNumber = Convert.ToString(TempData["crNumber"]) });
+                }
+                else
+                {
+                    SetAlertMessage("document detail not saved", "Document Entry");
+                    return RedirectToAction("PatientDetail", new { crNumber = Convert.ToString(TempData["crNumber"]) });
+                }
             }
             else
             {
-                SetAlertMessage("Hospital detail not saved", "Hospital Entry");
-                return RedirectToAction("HospitalDetail");
+                SetAlertMessage("document detail not saved", "Document Entry");
+                return RedirectToAction("PatientDetail", new { crNumber = Convert.ToString(TempData["crNumber"]) });
             }
         }
+
         public ActionResult UploadDocument()
         {
             return View();
