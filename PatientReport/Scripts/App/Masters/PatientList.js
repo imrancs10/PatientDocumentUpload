@@ -68,6 +68,61 @@
             utility.alert.setAlert(utility.alert.alertType.warning, 'Please Patient Type');
         }
     });
+
+    $('#btnSearchPatientEmployee').click(function () {
+        let PatientCRNumber = $('#crNumber').val().replace(':', '~').replace('/', '_');
+
+        if (PatientCRNumber !== '' && PatientCRNumber !== undefined) {
+            $.ajax({
+                dataType: 'json',
+                type: 'POST',
+                url: '/Masters/PatientListBYCRNumber',
+                data: '{crNumber: "' + PatientCRNumber + '" }',
+                contentType: "application/json; charset=utf-8",
+                success: function (patientRow) {
+                    if (patientRow == "NoPatient") {
+                        $('#tablePatient').addClass('hidden');
+                        $('#noRecordFound').removeClass('hidden');
+                    }
+                    else if (patientRow != null && patientRow != undefined) {
+                        $('#noRecordFound').addClass('hidden');
+                        $("#tablePatient thead").empty();
+                        $("#tablePatient tbody").empty();
+                        addColumns();
+                        var column = '<td>' + 1 + '</td>';
+                        column += '<td>' + patientRow.Title + patientRow.Firstname + ' ' + patientRow.Middlename + ' ' + patientRow.Lastname + '</td>';
+                        column += '<td>' + patientRow.Email + '</td>';
+                        column += '<td>' + patientRow.Age + '</td>';
+                        column += '<td>' + patientRow.Gender + '</td>';
+                        column += '<td>' + patientRow.Address + '</td>';
+                        column += '<td>' + patientRow.City + '</td>';
+                        column += '<td>' + patientRow.Pincode + '</td>';
+                        column += '<td>' + patientRow.Religion + '</td>';
+                        column += '<td>' + patientRow.Registrationnumber + '</td>';
+                        column += '<td>' + patientRow.FatherOrHusbandName + '</td>';
+                        column += '<td>' + patientRow.MaritalStatus + '</td>';
+
+                        column += '<td>' + patientRow.MaritalStatus + '</td>';
+                        column += '<td>' + patientRow.AadharNo + '</td>';
+                        column += '<td>' + patientRow.Pid + '</td>';
+                        column += '<td><a style="color:blue;" href="/Masters/PatientDetail?crNumber=' + PatientCRNumber + '">Detail</a></td>';
+                        var row = '<tr>' + column + '</tr>';
+                        $('#tablePatient tbody').append(row);
+                        $('#tablePatient').removeClass('hidden');
+                    }
+                },
+                failure: function (response) {
+                    alert(response);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+        else {
+            utility.alert.setAlert(utility.alert.alertType.warning, 'Please Patient Type');
+        }
+    });
 });
 
 function addColumns(patientType) {
@@ -97,6 +152,26 @@ function addColumns(patientType) {
             '<th> Sex</th> ' +
             '<th> Age</th> ' +
             '<th> timeoftran</th> ' +
+            '<th> Action</th> ' +
+            '</tr>';
+    }
+    else {
+        columns = '<tr>' +
+            '<th style="width: 10%">Sr. No.</th>' +
+            '<th> Name</th> ' +
+            '<th> Email</th> ' +
+            '<th> Age</th> ' +
+            '<th> Gender</th> ' +
+            '<th> Address</th> ' +
+            '<th> City</th> ' +
+            '<th> Pincode</th> ' +
+            '<th> Religion</th> ' +
+            '<th> Registrationnumber</th> ' +
+            '<th> FatherOrHusbandName</th> ' +
+            '<th> MaritalStatus</th> ' +
+            '<th> MaritalStatus</th> ' +
+            '<th> AadharNo</th> ' +
+            '<th> Pid</th> ' +
             '<th> Action</th> ' +
             '</tr>';
     }

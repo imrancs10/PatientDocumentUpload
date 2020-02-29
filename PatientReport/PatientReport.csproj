@@ -215,6 +215,7 @@
     <Compile Include="Infrastructure\Adapter\Notification\SendMessageStrategyForEmail.cs" />
     <Compile Include="Infrastructure\Adapter\Notification\SendMessageStrategyForSMS.cs" />
     <Compile Include="Infrastructure\Adapter\Notification\SMSService.cs" />
+    <Compile Include="Infrastructure\Adapter\WebService\WebServiceIntegration.cs" />
     <Compile Include="Infrastructure\Authentication\CustomAuthorize.cs" />
     <Compile Include="Infrastructure\Authentication\CustomPrincipal.cs" />
     <Compile Include="Infrastructure\Authentication\CustomPrincipalSerializeModel.cs" />
@@ -249,6 +250,11 @@
     <Compile Include="RequreSecureConnectionFilter.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Infrastructure\Utility\MultipleButtonAttribute.cs" />
+    <Compile Include="Web References\HISWebReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\App\Common.css" />
@@ -411,6 +417,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Shared\ExceptionPage.cshtml" />
+    <None Include="Web References\HISWebReference\GetPatientDetails.disco" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -431,6 +438,11 @@
     <Content Include="Views\Masters\PatientDetail.cshtml" />
     <Content Include="Views\Masters\UploadDocument.cshtml" />
     <Content Include="Views\Masters\SearchPatient.cshtml" />
+    <None Include="Web References\HISWebReference\GetPatientDetails.wsdl" />
+    <Content Include="Web References\HISWebReference\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -465,6 +477,22 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://103.78.201.146/PateintPortalWebservice/GetPatientDetails.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\HISWebReference\</RelPath>
+      <UpdateFromURL>http://103.78.201.146/PateintPortalWebservice/GetPatientDetails.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>PatientReport_HISWebReference_GetPatientDetails</CachedSettingsPropName>
+    </WebReferenceUrl>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

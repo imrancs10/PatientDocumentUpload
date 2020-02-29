@@ -12,6 +12,7 @@ using System.Web.Mvc;
 using DataLayer;
 using PatientReport.Global;
 using System.IO;
+using PatientReport.Infrastructure.Adapter.WebService;
 
 namespace PatientReport.Controllers
 {
@@ -86,6 +87,21 @@ namespace PatientReport.Controllers
             ViewData["documents"] = details.GetAllDocumentDetail(crNumber);
             TempData["crNumber"] = crNumber;
             return View();
+        }
+
+        [HttpPost]
+        public JsonResult PatientListBYCRNumber(string crNumber)
+        {
+            crNumber = crNumber.Replace('~', ':').Replace('_', '/');
+            DocumentDetails details = new DocumentDetails();
+
+            WebServiceIntegration service = new WebServiceIntegration();
+            var patient = service.GetPatientInfoBYCRNumber(crNumber);
+            if (patient != null)
+            {
+                return Json(patient);
+            }
+            return Json("NoPatient");
         }
 
         [HttpPost]

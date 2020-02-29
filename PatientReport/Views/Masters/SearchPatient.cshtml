@@ -3,6 +3,53 @@
     ViewBag.Title = "SearchPatient";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<script src="~/Scripts/App/Masters/PatientList.js"></script>
+<div class="">
+    <div class="col-sm-12 col-lg-12" style="padding-top:20px;">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Enter Patient CR Number</div>
+            <div class="panel-body">
+                <div class="col-container">
+                    <div class="col">
+                        <input type="text" name="crNumber" id="crNumber" value="" />
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary" id="btnSearchPatientEmployee">Search</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-lg-12 hidden" style="padding-top:20px;" id="tablePatient">
+        <div class="panel panel-primary">
+            <div class="panel-heading" id="reportdetail">Patient Details</div>
+            <div class="panel-body">
+                <div class="table table-responsive" style="max-width: 1086px;overflow-y: hidden;">
+                    <table class="table table-bordered table-hover table-responsive text-center" id="docTable">
+                        <thead>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span id="noRecordFound" class="hidden">No Record Found...</span>
+</div>
+<style>
+    .col-container {
+        display: table; /* Make the container element behave like a table */
+        width: 100%; /* Set full-width to expand the whole page */
+    }
 
-<h2>SearchPatient</h2>
+    .col {
+        display: table-cell; /* Make elements inside the container behave like table cells */
+        width: 25%;
+    }
+
+        .col select, input {
+            width: 95% !important;
+        }
+</style>
 
