@@ -94,21 +94,18 @@ namespace PatientReport.Controllers
             PatientDocument PatientDocument = new PatientDocument();
             if (document != null && document.ContentLength > 0)
             {
+                string fileUrl = getDocumentPath(document, PatientDocument.CRNumber);
+
                 PatientDocument.DocumentTitle = title;
                 PatientDocument.DocumentType = DocType;
                 PatientDocument.CRNumber = Convert.ToString(TempData["crNumber"]);
-
+                PatientDocument.DocumentPath = fileUrl;
                 //save file start
                 //hospital.HospitalLogo = new byte[File1.ContentLength];
                 //File1.InputStream.Read(hospital.HospitalLogo, 0, File1.ContentLength);
                 //Use Namespace called :  System.IO  
                 if (document.ContentLength > 0)
                 {
-                    //var fileName = Path.GetFileName(document.FileName);
-                    //var path = System.IO.Path.Combine(Server.MapPath("~/DownloadServer/"), fileName);
-                    ////Path.Combine(Server.MapPath(ConfigurationManager.AppSettings["DocumentPath"].ToString()), fileName);
-                    //document.SaveAs(path);
-                    //save file end
                     DocumentDetails details = new DocumentDetails();
                     var result = details.SaveDocumentDetail(PatientDocument);
                     if (result == Enums.CrudStatus.DataAlreadyExist)
@@ -117,6 +114,7 @@ namespace PatientReport.Controllers
                     }
                     else
                     {
+                        document.SaveAs(Server.MapPath(fileUrl));
                         SetAlertMessage("Document saved Successfully", "Document Entry");
                     }
 
@@ -133,6 +131,19 @@ namespace PatientReport.Controllers
                 SetAlertMessage("document detail not saved", "Document Entry");
                 return RedirectToAction("PatientDetail", new { crNumber = Convert.ToString(TempData["crNumber"]) });
             }
+        }
+
+        private string getDocumentPath(HttpPostedFileBase document, string CRNumber)
+        {
+            string dirUrl = "~/PatientDocument/" + CRNumber;
+            string dirPath = Server.MapPath(dirUrl);
+            if (!Directory.Exists(dirPath))
+            {
+                Directory.CreateDirectory(dirPath);
+            }
+            // save the file to the Specifyed folder  
+            string fileUrl = dirUrl + "/" + Path.GetFileName(document.FileName);
+            return fileUrl;
         }
 
         public ActionResult UploadDocument()

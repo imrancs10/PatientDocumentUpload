@@ -6,7 +6,7 @@
             $.ajax({
                 dataType: 'json',
                 type: 'POST',
-                url: '/PatientReport/Masters/PatientList',
+                url: '/Masters/PatientList',
                 data: '{patienttype: "' + PatientType + '" }',
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
@@ -29,7 +29,7 @@
                                 column += '<td>' + patientRow.bedno + '</td>';
                                 column += '<td>' + patientRow.roomno + '</td>';
                                 column += '<td>' + patientRow.admittime + '</td>';
-                                column += '<td><a style="color:blue;" href="/PatientReport/Masters/PatientDetail?crNumber=' + patientRow.PCode.replace(':', '~').replace('/', '_') + '">Detail</a></td>';
+                                column += '<td><a style="color:blue;" href="/Masters/PatientDetail?crNumber=' + patientRow.PCode.replace(':', '~').replace('/', '_') + '">Detail</a></td>';
                                 var row = '<tr>' + column + '</tr>';
                                 $('#tablePatient tbody').append(row);
                             });
@@ -44,7 +44,7 @@
                                 column += '<td>' + patientRow.Sex + '</td>';
                                 column += '<td>' + patientRow.Age + '</td>';
                                 column += '<td>' + patientRow.timeoftran + '</td>';
-                                column += '<td><a style="color:blue;" href="/PatientReport/Masters/PatientDetail?crNumber=' + patientRow.PCode.replace(':', '~').replace('/', '_') + '">Detail</a></td>';
+                                column += '<td><a style="color:blue;" href="/Masters/PatientDetail?crNumber=' + patientRow.PCode.replace(':', '~').replace('/', '_') + '">Detail</a></td>';
                                 var row = '<tr>' + column + '</tr>';
                                 $('#tablePatient tbody').append(row);
                             });
