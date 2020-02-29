@@ -53,7 +53,8 @@ namespace PatientReport
                         Email = serializeModel.Email,
                         Mobile = serializeModel.Mobile,
                         CODE = serializeModel.CODE,
-                        DepartmentID = serializeModel.DepartmentID
+                        DepartmentID = serializeModel.DepartmentID,
+                        UserType = serializeModel.UserType
                     };
 
                     HttpContext.Current.User = newUser;

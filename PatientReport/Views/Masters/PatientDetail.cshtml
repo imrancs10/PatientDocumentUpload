@@ -73,7 +73,7 @@
                                                 @{
                                                     string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority + Request.ApplicationPath.TrimEnd('/') + "/";
                                                     string fileURL = baseUrl + @document.DocumentPath.Replace("~/", "");
-                                                    <a class="navbar-brand" href="@fileURL" style="font-size:15px;" target="_blank">
+                                                    <a class="navbar-brand" href="@fileURL" style="font-size:15px;color:#3838e8;" target="_blank">
                                                         @if (!string.IsNullOrEmpty(document.DocumentPath))
                                                         {
                                                             @document.DocumentPath.Substring(@document.DocumentPath.LastIndexOf('/') + 1, @document.DocumentPath.Length - @document.DocumentPath.LastIndexOf('/') - 1)
@@ -83,7 +83,7 @@
 
                                             </td>
                                             <td>
-                                                <a class="navbar-brand" href="/Masters/DeleteHospital/@document.Id" style="font-size:15px;">Delete</a>
+                                                <a class="navbar-brand" href="/Masters/DeleteHospital/@document.Id" style="font-size:15px;color: red;">Delete</a>
                                                 @*@Html.ActionLink("Delete", "DeleteHospital", "Masters", new { Id = document.Id }, new { @class = "navbar-brand" })*@
                                             </td>
                                         </tr>

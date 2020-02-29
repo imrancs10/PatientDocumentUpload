@@ -49,6 +49,55 @@ namespace PatientReport.Controllers
                 {
                     if (loginResponseModel.Status == true)
                     {
+                        loginResponseModel.UserType = "Doctor";
+                        setUserClaim(loginResponseModel);
+                        return RedirectToAction("HomePage", "Masters");
+                    }
+                    else
+                    {
+                        SetAlertMessage(Enums.LoginMessage.InvalidCreadential.ToString(), "Login Response");
+                        return View("Index");
+                    }
+                }
+                else
+                {
+                    SetAlertMessage(Enums.LoginMessage.InvalidCreadential.ToString(), "Login Response");
+                    return View("Index");
+                }
+            }
+            else if (userrole == "Others")
+            {
+                LoginResponseModel loginResponseModel = new LoginResponseModel();
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["HIMSDoctorApiBaseUrl"].ToString());
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    var response = client.GetAsync("/RMLAPI/api/Authentication?id=&username=" + username + "&password=" + password + "").Result;
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseString = response.Content.ReadAsStringAsync().Result;
+                        loginResponseModel = response.Content.ReadAsAsync<LoginResponseModel>().Result;
+                    }
+                    else
+                    {
+                        SetAlertMessage(Enums.LoginMessage.LoginFailed.ToString(), "Login Response");
+                        return View("Index");
+                    }
+                }
+
+                if (loginResponseModel != null)
+                {
+                    if (loginResponseModel.Status == true || loginResponseModel.Status == false)
+                    {
+                        // Code will be reomved later start
+                        loginResponseModel.DoctorId = 1;
+                        loginResponseModel.Name = "testUser";
+                        loginResponseModel.CODE = "testUser";
+                        loginResponseModel.Mobile = "000000000";
+                        loginResponseModel.EmailAddress = "testUser@test.com";
+                        loginResponseModel.UserType = "Employee";
+                        // Code will be reomved later End
                         setUserClaim(loginResponseModel);
                         return RedirectToAction("HomePage", "Masters");
                     }
@@ -80,7 +129,8 @@ namespace PatientReport.Controllers
             serializeModel.CODE = string.IsNullOrEmpty(loginResponseModel.CODE) ? string.Empty : loginResponseModel.CODE;
             serializeModel.Mobile = string.IsNullOrEmpty(loginResponseModel.Mobile) ? string.Empty : loginResponseModel.Mobile;
             serializeModel.DepartmentID = string.IsNullOrEmpty(loginResponseModel.Mobile) ? string.Empty : loginResponseModel.Mobile; ;
-            serializeModel.Email = string.IsNullOrEmpty(loginResponseModel.EmailAddress) ? string.Empty : loginResponseModel.EmailAddress; ;
+            serializeModel.Email = string.IsNullOrEmpty(loginResponseModel.EmailAddress) ? string.Empty : loginResponseModel.EmailAddress;
+            serializeModel.UserType = string.IsNullOrEmpty(loginResponseModel.UserType) ? string.Empty : loginResponseModel.UserType; ;
 
             JavaScriptSerializer serializer = new JavaScriptSerializer();
 

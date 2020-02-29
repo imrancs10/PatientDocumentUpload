@@ -20,5 +20,6 @@ namespace PatientReport.Models.PatientReport
         public string Mobile { get; set; }
         public string EmailAddress { get; set; }
         public string Designation { get; set; }
+        public string UserType { get; set; }
     }
 }

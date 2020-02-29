@@ -40,22 +40,14 @@
                         <div id="navbar" class="navbar-collapse collapse">
                             <ul class="nav navbar-nav">
                                 <li class="active"><a href="~/Masters/HomePage" class="">Home</a></li>
-                                <li class=" dropdown">
-                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patient for Doctor<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="~/Masters/PatientList"><i></i>PatientList</a></li>
-                                        <li><a href="~/Masters/PatientDetail"><i></i>PatientDetail</a></li>
-                                        <li><a href="~/Masters/UploadDocument"><i></i>UploadDocument</a></li>
-                                    </ul>
-                                </li>
-                                <li class=" dropdown">
-                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Patient for Other<span class="caret"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="~/Masters/SearchPatient"><i></i>SearchPatient</a></li>
-                                        <li><a href="~/Masters/PatientDetail"><i></i>PatientDetail</a></li>
-                                        <li><a href="~/Masters/UploadDocument"><i></i>UploadDocument</a></li>
-                                    </ul>
-                                </li>
+                                @if ((User as CustomPrincipal).UserType == "Doctor")
+                                {
+                                    <li class="active"><a href="~/Masters/PatientList" class="">PatientList</a></li>
+                                }
+                                @if ((User as CustomPrincipal).UserType == "Employee")
+                                {
+                                    <li><a href="~/Masters/SearchPatient"><i></i>SearchPatient</a></li>
+                                }
                             </ul>
                             <ul class="nav navbar-nav pull-right">
                                 <li class=" dropdown">
