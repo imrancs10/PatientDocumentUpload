@@ -94,7 +94,7 @@ namespace PatientReport.Controllers
             PatientDocument PatientDocument = new PatientDocument();
             if (document != null && document.ContentLength > 0)
             {
-                string fileUrl = getDocumentPath(document, PatientDocument.CRNumber);
+                string fileUrl = getDocumentPath(document, Convert.ToString(TempData["crNumber"]).Replace(':', '~').Replace('/', '_'));
 
                 PatientDocument.DocumentTitle = title;
                 PatientDocument.DocumentType = DocType;
