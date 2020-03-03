@@ -22,32 +22,32 @@ namespace PatientReport.Controllers
             return View();
         }
 
-        public ActionResult GetLogin(string username, string password, string userrole)
+        public ActionResult GetLogin(string username, string password)
         {
-            if (userrole == "Doctors")
+            LoginResponseModel loginResponseModel = new LoginResponseModel();
+            using (var client = new HttpClient())
             {
-                LoginResponseModel loginResponseModel = new LoginResponseModel();
-                using (var client = new HttpClient())
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings["HIMSDoctorApiBaseUrl"].ToString());
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                var response = client.GetAsync("/RMLAPI/api/Authentication?id=&username=" + username + "&password=" + password + "").Result;
+                if (response.IsSuccessStatusCode)
                 {
-                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["HIMSDoctorApiBaseUrl"].ToString());
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    var response = client.GetAsync("/RMLAPI/api/Authentication?id=&username=" + username + "&password=" + password + "").Result;
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string responseString = response.Content.ReadAsStringAsync().Result;
-                        loginResponseModel = response.Content.ReadAsAsync<LoginResponseModel>().Result;
-                    }
-                    else
-                    {
-                        SetAlertMessage(Enums.LoginMessage.LoginFailed.ToString(), "Login Response");
-                        return View("Index");
-                    }
+                    string responseString = response.Content.ReadAsStringAsync().Result;
+                    loginResponseModel = response.Content.ReadAsAsync<LoginResponseModel>().Result;
                 }
-
-                if (loginResponseModel != null)
+                else
                 {
-                    if (loginResponseModel.Status == true)
+                    SetAlertMessage(Enums.LoginMessage.LoginFailed.ToString(), "Login Response");
+                    return View("Index");
+                }
+            }
+
+            if (loginResponseModel != null)
+            {
+                if (loginResponseModel.Status == true)
+                {
+                    if (loginResponseModel.DoctorId > 0)
                     {
                         loginResponseModel.UserType = "Doctor";
                         setUserClaim(loginResponseModel);
@@ -55,57 +55,11 @@ namespace PatientReport.Controllers
                     }
                     else
                     {
-                        SetAlertMessage(Enums.LoginMessage.InvalidCreadential.ToString(), "Login Response");
-                        return View("Index");
-                    }
-                }
-                else
-                {
-                    SetAlertMessage(Enums.LoginMessage.InvalidCreadential.ToString(), "Login Response");
-                    return View("Index");
-                }
-            }
-            else if (userrole == "Others")
-            {
-                LoginResponseModel loginResponseModel = new LoginResponseModel();
-                using (var client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings["HIMSDoctorApiBaseUrl"].ToString());
-                    client.DefaultRequestHeaders.Accept.Clear();
-                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    var response = client.GetAsync("/RMLAPI/api/Authentication?id=&username=" + username + "&password=" + password + "").Result;
-                    if (response.IsSuccessStatusCode)
-                    {
-                        string responseString = response.Content.ReadAsStringAsync().Result;
-                        loginResponseModel = response.Content.ReadAsAsync<LoginResponseModel>().Result;
-                    }
-                    else
-                    {
-                        SetAlertMessage(Enums.LoginMessage.LoginFailed.ToString(), "Login Response");
-                        return View("Index");
-                    }
-                }
-
-                if (loginResponseModel != null)
-                {
-                    if (loginResponseModel.Status == true || loginResponseModel.Status == false)
-                    {
-                        // Code will be reomved later start
-                        loginResponseModel.DoctorId = 1;
-                        loginResponseModel.Name = "testUser";
-                        loginResponseModel.CODE = "testUser";
-                        loginResponseModel.Mobile = "000000000";
-                        loginResponseModel.EmailAddress = "testUser@test.com";
                         loginResponseModel.UserType = "Employee";
-                        // Code will be reomved later End
                         setUserClaim(loginResponseModel);
                         return RedirectToAction("HomePage", "Masters");
                     }
-                    else
-                    {
-                        SetAlertMessage(Enums.LoginMessage.InvalidCreadential.ToString(), "Login Response");
-                        return View("Index");
-                    }
+                    
                 }
                 else
                 {
@@ -115,10 +69,9 @@ namespace PatientReport.Controllers
             }
             else
             {
-                SetAlertMessage(Enums.LoginMessage.WrongUserSelected.ToString(), "Login Response");
+                SetAlertMessage(Enums.LoginMessage.InvalidCreadential.ToString(), "Login Response");
                 return View("Index");
             }
-
         }
 
         private void setUserClaim(LoginResponseModel loginResponseModel)

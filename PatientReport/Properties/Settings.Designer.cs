@@ -22,5 +22,15 @@ namespace PatientReport.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://103.78.201.146/PateintPortalWebservice/GetPatientDetails.asmx")]
+        public string PatientReport_HISWebReference_GetPatientDetails {
+            get {
+                return ((string)(this["PatientReport_HISWebReference_GetPatientDetails"]));
+            }
+        }
     }
 }
